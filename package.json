@@ -1,0 +1,24 @@
+{
+	"name": "github-create-pullrequests-github-action",
+	"version": "0.0.3",
+	"description": "Create for all matching branches a PR",
+	"main": "index.js",
+	"scripts": {
+		"build": "ncc build index.js -o dist"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ScientaNL/batch-create-pullrequests-github-action.git"
+	},
+	"author": "Scienta",
+	"license": "MIT",
+	"dependencies": {
+		"@actions/core": "^1.2.6",
+		"@actions/github": "^4.0.0",
+		"picomatch": "^2.2.2",
+		"string-template": "^1.0.0"
+	},
+	"devDependencies": {
+		"@vercel/ncc": "^0.25.1"
+	}
+}

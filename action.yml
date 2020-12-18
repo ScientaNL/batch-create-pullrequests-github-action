@@ -1,0 +1,28 @@
+name: 'Github Actions environment variables toolkit Action'
+description: 'Format and expose environment variables useful for our Github Actions'
+author: 'Scienta'
+inputs:
+  github-token:
+    description: 'Github Actions Token or Personal Access Token (PAT)'
+    required: true
+  repository-owner:
+    description: 'Owner of the repository'
+    required: true
+  repository-name:
+    description: 'Name of the repository'
+    required: true
+  head-branch:
+    description: 'Name of the head branch'
+    required: true
+  base-branch-filters:
+    description: 'JSON-string of array of globs to match base branches (uses picomatch)'
+    required: true
+  pr-title:
+    description: 'Title of the Pull Request (Variables: {head}, {base})'
+    default: 'Merge {head} into {base}'
+  pr-body:
+    description: 'Body of the Pull Request (Variables: see title)'
+    default: ''
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
