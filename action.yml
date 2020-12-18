@@ -17,12 +17,16 @@ inputs:
   base-branch-filters:
     description: 'JSON-string of array of globs to match base branches (uses picomatch)'
     required: true
+    default: '[]'
   pr-title:
     description: 'Title of the Pull Request (Variables: {head}, {base})'
     default: 'Merge {head} into {base}'
   pr-body:
     description: 'Body of the Pull Request (Variables: see title)'
     default: ''
+  pr-labels:
+    description: 'Labels to add to the PR'
+    default: '[]'
 runs:
   using: 'node12'
   main: 'dist/index.js'

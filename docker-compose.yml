@@ -14,6 +14,7 @@ services:
       INPUT_BASE-BRANCH-FILTERS: "${BASE_BRANCH_FILTERS}"
       INPUT_PR-TITLE: "${PR_TITLE}"
       INPUT_PR-BODY: "${PR_BODY}"
+      INPUT_PR-LABELS: "${PR_LABELS}"
     volumes:
       - ./:/home/node/app
     command: "tail -f /dev/null"

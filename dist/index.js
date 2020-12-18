@@ -47,7 +47,8 @@ async function createPullRequest(head, base) {
     } else if(isIdentical) {
         core.info(`Dont create a PR for ${head} into ${base}. Branches are identical.`);
     } else {
-        const variables = {head, base};
+        const titleBodyVariables = {head, base};
+        const labels = JSON.parse(core.getInput('pr-labels'));
 
         try {
             const pr = (await octokit.pulls.create({
@@ -55,9 +56,18 @@ async function createPullRequest(head, base) {
                 repo,
                 head: head,
                 base: base,
-                title: format(core.getInput("pr-title"), variables),
-                body: format(core.getInput("pr-body"), variables),
+                title: format(core.getInput("pr-title"), titleBodyVariables),
+                body: format(core.getInput("pr-body"), titleBodyVariables),
             })).data;
+
+            if(labels.length) {
+                await octokit.issues.addLabels({
+                    owner,
+                    repo,
+                    issue_number: pr.number,
+                    labels
+                });
+            }
 
             core.info(`Created PR ${pr.number} - ${pr.title}`);
         }
